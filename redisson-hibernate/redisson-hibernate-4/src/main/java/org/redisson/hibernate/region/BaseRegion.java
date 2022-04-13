@@ -64,8 +64,8 @@ public class BaseRegion implements TransactionalDataRegion, GeneralDataRegion {
 
     private String getProperty(Properties properties, String name, String defaultKey, String suffix) {
         String value = properties.getProperty(RedissonRegionFactory.CONFIG_PREFIX + name + suffix);
-        if (value != null) {
-            return value;
+        if (value == null) {
+            return value.toString();
         }
         String defValue = properties.getProperty(RedissonRegionFactory.CONFIG_PREFIX + defaultKey + suffix);
         if (defValue != null) {
